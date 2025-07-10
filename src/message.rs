@@ -399,6 +399,44 @@ pub fn parse(osc_packet: OscPacket) -> Result<Vec<Message>> {
 				Vec3::new(o_x, o_y, o_z)
 			))),
 			(
+				"/VMC/Ext/Root/Pos",
+				&[
+					//OscType::String(_),
+					OscType::Float(p_x),
+					OscType::Float(p_y),
+					OscType::Float(p_z),
+					OscType::Float(r_x),
+					OscType::Float(r_y),
+					OscType::Float(r_z),
+					OscType::Float(r_w)
+				]
+			) => Ok(Message::RootTransform(RootTransform::new(Vec3::new(p_x, p_y, p_z), Quat::from_xyzw(r_x, r_y, r_z, r_w)))),
+			(
+				"/VMC/Ext/Root/Pos",
+				&[
+					//OscType::String(_),
+					OscType::Float(p_x),
+					OscType::Float(p_y),
+					OscType::Float(p_z),
+					OscType::Float(r_x),
+					OscType::Float(r_y),
+					OscType::Float(r_z),
+					OscType::Float(r_w),
+					OscType::Float(s_x),
+					OscType::Float(s_y),
+					OscType::Float(s_z),
+					OscType::Float(o_x),
+					OscType::Float(o_y),
+					OscType::Float(o_z),
+					..
+				]
+			) => Ok(Message::RootTransform(RootTransform::new_mr(
+				Vec3::new(p_x, p_y, p_z),
+				Quat::from_xyzw(r_x, r_y, r_z, r_w),
+				Vec3::new(s_x, s_y, s_z),
+				Vec3::new(o_x, o_y, o_z)
+			))),
+			(
 				"/VMC/Ext/Bone/Pos",
 				&[
 					OscType::String(ref bone),
