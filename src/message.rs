@@ -370,7 +370,8 @@ pub fn parse(osc_packet: OscPacket) -> Result<Vec<Message>> {
 					OscType::Float(r_x),
 					OscType::Float(r_y),
 					OscType::Float(r_z),
-					OscType::Float(r_w)
+					OscType::Float(r_w),
+					..
 				]
 			) => Ok(Message::RootTransform(RootTransform::new(Vec3::new(p_x, p_y, p_z), Quat::from_xyzw(r_x, r_y, r_z, r_w)))),
 			(
@@ -408,7 +409,8 @@ pub fn parse(osc_packet: OscPacket) -> Result<Vec<Message>> {
 					OscType::Float(r_x),
 					OscType::Float(r_y),
 					OscType::Float(r_z),
-					OscType::Float(r_w)
+					OscType::Float(r_w),
+					..
 				]
 			) => Ok(Message::RootTransform(RootTransform::new(Vec3::new(p_x, p_y, p_z), Quat::from_xyzw(r_x, r_y, r_z, r_w)))),
 			(
