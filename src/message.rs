@@ -363,7 +363,7 @@ pub fn parse(osc_packet: OscPacket) -> Result<Vec<Message>> {
 			(
 				"/VMC/Ext/Root/Pos",
 				&[
-					OscType::String(ref _),
+					OscType::String(_),
 					OscType::Float(p_x),
 					OscType::Float(p_y),
 					OscType::Float(p_z),
@@ -376,7 +376,7 @@ pub fn parse(osc_packet: OscPacket) -> Result<Vec<Message>> {
 			(
 				"/VMC/Ext/Root/Pos",
 				&[
-					OscType::String(ref _),
+					OscType::String(_),
 					OscType::Float(p_x),
 					OscType::Float(p_y),
 					OscType::Float(p_z),
