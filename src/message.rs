@@ -601,7 +601,13 @@ pub fn parse(osc_packet: OscPacket) -> Result<Vec<Message>> {
 				tracking_state.try_into().map_err(Error::UnknownTrackingState)?
 			))),
 			("/VMC/Ext/T", &[OscType::Float(time), ..]) => Ok(Message::Time(Time::new(time))),
-			(addr, args) => Err(Error::UnimplementedMessage(addr.to_owned(), args.to_owned()))
+			(addr, args) => {
+			    // This will print any message that doesn't match a known pattern
+			    println!("Unimplemented VMC message received:");
+			    println!("  Address: {}", addr);
+			    println!("  Args: {:?}", args);
+			    Err(Error::UnimplementedMessage(addr.to_owned(), args.to_owned()))
+			}
 		})
 		.collect()
 }
